@@ -6,7 +6,7 @@
  */
 
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Drawer from './src/navigation/Drawer/Drawer';
 

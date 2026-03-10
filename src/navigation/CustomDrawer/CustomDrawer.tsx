@@ -2,34 +2,40 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import Header from '../../components/Header/Header';
 
-export default function CustomDrawer({ navigation }: any) {
+export default function CustomDrawer({ navigation, state }: any) {
+  const activeRoute = state.routeNames[state.index];
+
   const goTo = (screen: string) => {
     navigation.navigate(screen);
     navigation.closeDrawer();
   };
 
+  const getStyle = (screen: string) =>
+    screen === activeRoute ? styles.selectedItem : styles.itemText;
+
   return (
     <View style={styles.container}>
       <Header />
+
       <View>
         <TouchableOpacity style={styles.item} onPress={() => goTo('Home')}>
-          <Text style={styles.itemText}>🏠 Home</Text>
+          <Text style={getStyle('Home')}>🏠 Home</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.item} onPress={() => goTo('Product')}>
-          <Text style={styles.itemText}>📦 Products</Text>
+          <Text style={getStyle('Product')}>📦 Products</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.item} onPress={() => goTo('About')}>
-          <Text style={styles.itemText}>ℹ️ About Us</Text>
+          <Text style={getStyle('About')}>ℹ️ About Us</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.item} onPress={() => goTo('Version')}>
-          <Text style={styles.itemText}>♻ Version</Text>
+          <Text style={getStyle('Version')}>♻ Version</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.item} onPress={() => goTo('Contact')}>
-          <Text style={styles.itemText}>📞 Contact Us</Text>
+          <Text style={getStyle('Contact')}>📞 Contact Us</Text>
         </TouchableOpacity>
       </View>
 
@@ -61,6 +67,12 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 25,
     fontWeight: 'bold',
+  },
+
+  selectedItem: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#4F46E5', // blue highlight
   },
 
   bottomContainer: {
