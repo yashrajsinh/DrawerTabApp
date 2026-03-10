@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import Header from '../../components/Header/Header';
 
 export default function CustomDrawer({ navigation }: any) {
   const goTo = (screen: string) => {
@@ -9,6 +10,7 @@ export default function CustomDrawer({ navigation }: any) {
 
   return (
     <View style={styles.container}>
+      <Header />
       <View>
         <TouchableOpacity style={styles.item} onPress={() => goTo('Home')}>
           <Text style={styles.itemText}>🏠 Home</Text>
@@ -18,17 +20,26 @@ export default function CustomDrawer({ navigation }: any) {
           <Text style={styles.itemText}>📦 Products</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.item} onPress={() => goTo('Contact')}>
-          <Text style={styles.itemText}>📞 Contact Us</Text>
-        </TouchableOpacity>
-
         <TouchableOpacity style={styles.item} onPress={() => goTo('About')}>
           <Text style={styles.itemText}>ℹ️ About Us</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.item} onPress={() => goTo('Version')}>
+          <Text style={styles.itemText}>♻ Version</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.item} onPress={() => goTo('Contact')}>
+          <Text style={styles.itemText}>📞 Contact Us</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.bottomContainer}>
-        <Text style={styles.logoutText}>🚪 Logout</Text>
+        <Text
+          onPress={() => Alert.alert('Log out', 'You are logging out')}
+          style={styles.logoutText}
+        >
+          🚪 Logout
+        </Text>
       </View>
     </View>
   );
@@ -38,16 +49,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    paddingTop: 60,
+    paddingTop: 65,
+    padding: 10,
   },
 
   item: {
-    paddingVertical: 15,
-    paddingHorizontal: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 15,
   },
 
   itemText: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: 'bold',
   },
 
