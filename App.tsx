@@ -5,11 +5,19 @@
  * @format
  */
 
+import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Drawer from './src/navigation/Drawer/Drawer';
 
 function App() {
-  return <SafeAreaProvider></SafeAreaProvider>;
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Drawer />
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
 }
 
 const styles = StyleSheet.create({
